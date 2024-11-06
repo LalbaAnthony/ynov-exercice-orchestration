@@ -28,9 +28,9 @@ jobs:
     needs: install
     steps:
       - name: Checkout
-        uses: actions/checkout@v2   # Ensures access to files in this job
+        uses: actions/checkout@v2
       - name: Verify directory
-        run: ls -alh ${{ github.workspace }}  # List files in the directory to confirm `package.json`
+        run: ls -alh ${{ github.workspace }} # List files in the directory to confirm `package.json`
         working-directory: ${{ github.workspace }}
       - name: Test
         run: npm run test
@@ -42,7 +42,7 @@ jobs:
     needs: test
     steps:
       - name: Checkout
-        uses: actions/checkout@v2   # Ensures access to files in this job
+        uses: actions/checkout@v2
       - name: Build
         run: npm run build
         working-directory: ${{ github.workspace }}
@@ -53,10 +53,11 @@ jobs:
     needs: build
     steps:
       - name: Checkout
-        uses: actions/checkout@v2   # Ensures access to files in this job
+        uses: actions/checkout@v2
       - name: Deploy
         run: echo "Deploying to production..."
         working-directory: ${{ github.workspace }}
+
   # # Send discord message
   # discord:
   #   runs-on: ubuntu-latest
