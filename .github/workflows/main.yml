@@ -8,13 +8,13 @@ jobs:
   install:
     runs-on: ubuntu-latest
     steps:
+      - name: Clear npm cache
+        run: npm cache clean --force
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
           ref: "main"
-
-      - name: Clear npm cache
-        run: npm cache clean --force
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -29,8 +29,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
-      - name: Liste des fichiers
-        run: ls -alh ../../   # Pour vérifier la structure des fichiers
       - name: Test
         run: npm run test
 
