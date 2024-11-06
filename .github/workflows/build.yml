@@ -1,0 +1,14 @@
+name: Build
+on:
+  workflow_run:
+  workflows: ["Install"]
+  types:
+    - completed
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Change directory
+        run: cd ./
+      - name: Build
+        run: npm run build

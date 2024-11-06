@@ -8,7 +8,7 @@
   },
   "author": "Anthony Lalba",
   "license": "ISC",
-  "description": "",
+  "description": "Exercice d'orchestration",
   "devDependencies": {
     "jest": "^29.7.0"
   },

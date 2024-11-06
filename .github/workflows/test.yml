@@ -1,0 +1,14 @@
+name: Test
+on:
+  workflow_run:
+  workflows: ["Build"]
+  types:
+    - completed
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Change directory
+        run: cd ./
+      - name: Test
+        run: npm run test
