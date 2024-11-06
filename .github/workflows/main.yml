@@ -16,6 +16,9 @@ jobs:
         with:
           ref: "main"
 
+      - name: Files list
+        run: ls -alh
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -48,13 +51,13 @@ jobs:
       - name: Deploy
         run: echo "Deploying to production..."
 
-  # Send discord message
-  discord:
-    runs-on: ubuntu-latest
-    needs: deploy
-    steps:
-      - name: Send message to Discord
-        run: |
-          curl -X POST -H "Content-Type: application/json" \
-            -d '{"content": "https://www.bravo-vous-etes-sur-internet.fr/"}' \
-            ${{ secrets.DISCORD_WEBHOOK_URL }}
+  # # Send discord message
+  # discord:
+  #   runs-on: ubuntu-latest
+  #   needs: deploy
+  #   steps:
+  #     - name: Send message to Discord
+  #       run: |
+  #         curl -X POST -H "Content-Type: application/json" \
+  #           -d '{"content": "https://www.bravo-vous-etes-sur-internet.fr/"}' \
+  #           ${{ secrets.DISCORD_WEBHOOK_URL }}
