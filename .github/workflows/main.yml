@@ -27,8 +27,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2   # Ensures access to files in this job
       - name: Verify directory
-        run: ls -alh ${{ github.workspace }}  # List files in the directory
+        run: ls -alh ${{ github.workspace }}  # List files in the directory to confirm `package.json`
+        working-directory: ${{ github.workspace }}
       - name: Test
         run: npm run test
         working-directory: ${{ github.workspace }}
@@ -38,6 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2   # Ensures access to files in this job
       - name: Build
         run: npm run build
         working-directory: ${{ github.workspace }}
@@ -47,6 +52,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2   # Ensures access to files in this job
       - name: Deploy
         run: echo "Deploying to production..."
         working-directory: ${{ github.workspace }}
