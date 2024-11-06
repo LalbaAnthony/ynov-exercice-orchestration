@@ -29,6 +29,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
+      - name: Change to the repository root
+        run: cd $GITHUB_WORKSPACE
       - name: Test
         run: npm run test
 
