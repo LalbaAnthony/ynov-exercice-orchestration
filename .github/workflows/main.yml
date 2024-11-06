@@ -30,6 +30,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
+      - name: PLZ
+        run: |
+          echo ${{ github.workspace }}
+          echo $GITHUB_WORKSPACE
+
       - name: Change to the repository root
         run: cd $GITHUB_WORKSPACE
       - name: Test
