@@ -1,4 +1,4 @@
-name: <NAME>
+name: CI
 on:
   push:
     branches:
@@ -7,6 +7,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Change directory
+        run: cd path/to/your/directory
       - uses: actions/checkout@v2
       - name: Set up Node.js
         uses: actions/setup-node@v2
