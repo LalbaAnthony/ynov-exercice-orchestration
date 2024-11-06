@@ -4,6 +4,15 @@ on:
     branches:
       - main
 jobs:
+  # Tests
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Change directory
+        run: cd ./
+
+      - name: Test
+        run: npm run test
 
   # Build
   build:
@@ -23,16 +32,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-  # Tests
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Change directory
-        run: cd ./
-
-      - name: Test
-        run: npm run test
-
   # Deploy
   deploy:
     runs-on: ubuntu-latest
@@ -49,5 +48,5 @@ jobs:
       - name: Send message to Discord
         run: |
           curl -X POST -H "Content-Type: application/json" \
-            -d '{"content": "Le deploy est terminé ! (je suis trop fort)"}' \
+            -d '{"content": "https://www.bravo-vous-etes-sur-internet.fr/"}' \
             ${{ secrets.DISCORD_WEBHOOK_URL }}
