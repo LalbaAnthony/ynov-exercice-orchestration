@@ -1,8 +1,10 @@
-name: Install
+name: CI/CD Workflow
+
 on:
   push:
     branches:
       - main
+
 jobs:
   # Installation
   install:
@@ -25,6 +27,7 @@ jobs:
   # Tests
   test:
     runs-on: ubuntu-latest
+    needs: install  # Test ne démarre qu'après la fin de l'installation
     steps:
       - name: Change directory
         run: cd ./
@@ -35,6 +38,7 @@ jobs:
   # Build
   build:
     runs-on: ubuntu-latest
+    needs: test  # Build ne démarre qu'après la fin des tests
     steps:
       - name: Change directory
         run: cd ./
@@ -45,15 +49,18 @@ jobs:
   # Deploy
   deploy:
     runs-on: ubuntu-latest
+    needs: build  # Deploy ne démarre qu'après la fin du build
     steps:
       - name: Change directory
         run: cd ./
+
       - name: Deploy
         run: echo "Deploying to production..."
 
   # Send discord message
   discord:
     runs-on: ubuntu-latest
+    needs: deploy  # Discord ne démarre qu'après le déploiement
     steps:
       - name: Send message to Discord
         run: |
