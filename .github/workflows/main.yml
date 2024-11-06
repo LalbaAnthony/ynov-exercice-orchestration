@@ -40,8 +40,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: test  # Build ne démarre qu'après la fin des tests
     steps:
-      - name: Change directory
-        run: cd ./
 
       - name: Build
         run: npm run build
