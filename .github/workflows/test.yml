@@ -4,6 +4,8 @@ on:
   workflows: ["Build"]
   types:
     - completed
+    - success
+
 jobs:
   test:
     runs-on: ubuntu-latest
