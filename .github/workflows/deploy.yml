@@ -1,0 +1,14 @@
+name: Deply
+on:
+  workflow_run:
+  workflows: ["test"]
+  types:
+    - completed
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Change directory
+        run: cd ./
+      - name: Deploy
+        run: echo "Deploying to production..."
