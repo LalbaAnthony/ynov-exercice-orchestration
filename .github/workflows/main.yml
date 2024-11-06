@@ -43,9 +43,9 @@ jobs:
 
   # Send discord message
   discord:
-      runs-on: ubuntu-latest
-      - name: Send message to Discord
-        run: |
-          curl -X POST -H "Content-Type: application/json" \
-            -d '{"content": "Le deploy est terminé ! (je suis trop fort)"}' \
-            ${{ secrets.DISCORD_WEBHOOK_URL }}
+    runs-on: ubuntu-latest
+    - name: Send message to Discord
+      run: |
+        curl -X POST -H "Content-Type: application/json" \
+          -d '{"content": "Le deploy est terminé ! (je suis trop fort)"}' \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
