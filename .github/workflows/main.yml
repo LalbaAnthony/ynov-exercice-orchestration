@@ -30,7 +30,7 @@ jobs:
     needs: install
     steps:
       - name: Liste des fichiers
-        run: ls -alh   # Pour vérifier la structure des fichiers
+        run: ls -alh ../   # Pour vérifier la structure des fichiers
       - name: Test
         run: npm run test
 
