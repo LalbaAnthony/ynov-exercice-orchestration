@@ -27,7 +27,7 @@ jobs:
   # # Tests
   # test:
   #   runs-on: ubuntu-latest
-  #   needs: install  # Test ne démarre qu'après la fin de l'installation
+  #   needs: install 
   #   steps:
   #     - name: Change directory
   #       run: cd ./
@@ -38,7 +38,7 @@ jobs:
   # Build
   build:
     runs-on: ubuntu-latest
-    needs: test  # Build ne démarre qu'après la fin des tests
+    # needs: test  
     steps:
       - name: Change directory
         run: cd ./
@@ -49,7 +49,7 @@ jobs:
   # Deploy
   deploy:
     runs-on: ubuntu-latest
-    needs: build  # Deploy ne démarre qu'après la fin du build
+    needs: build  
     steps:
       - name: Change directory
         run: cd ./
@@ -60,7 +60,7 @@ jobs:
   # Send discord message
   discord:
     runs-on: ubuntu-latest
-    needs: deploy  # Discord ne démarre qu'après le déploiement
+    needs: deploy 
     steps:
       - name: Send message to Discord
         run: |
