@@ -17,6 +17,8 @@ jobs:
         with:
           ref: "main"
           credentials: false
+    - name: List files
+        run: ls -alh ${{ github.workspace }}  
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
