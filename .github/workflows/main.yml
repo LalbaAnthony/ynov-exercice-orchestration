@@ -3,28 +3,21 @@ on:
   push:
     branches:
       - main
+
 jobs:
   # Installation
   install:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Clear npm cache
         run: npm cache clean --force
         working-directory: ${{ github.workspace }}
-
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: "main"
-          credentials: false
-      - name: List files
-        run: ls -alh ${{ github.workspace }}  
-
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v2
         with:
-          node-version: "18"
-
+          node-version: "14"
       - name: Install dependencies
         run: npm install
         working-directory: ${{ github.workspace }}
@@ -34,13 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
-      # - name: PLZ
-      #   run: |
-      #     echo ${{ github.workspace }}
-      #     echo $GITHUB_WORKSPACE
-
-      - name: Change to the repository root
-        run: cd $GITHUB_WORKSPACE
+      - name: Verify directory
+        run: ls -alh ${{ github.workspace }}  # List files in the directory
       - name: Test
         run: npm run test
         working-directory: ${{ github.workspace }}
@@ -50,9 +38,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     steps:
-      - name: Change to the repository root
-        run: cd $GITHUB_WORKSPACE
-
       - name: Build
         run: npm run build
         working-directory: ${{ github.workspace }}
@@ -62,19 +47,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      # - name: Change to the repository root
-      #   run: cd $GITHUB_WORKSPACE
-
       - name: Deploy
         run: echo "Deploying to production..."
-
-  # # Send discord message
-  # discord:
-  #   runs-on: ubuntu-latest
-  #   needs: deploy
-  #   steps:
-  #     - name: Send message to Discord
-  #       run: |
-  #         curl -X POST -H "Content-Type: application/json" \
-  #           -d '{"content": "https://www.bravo-vous-etes-sur-internet.fr/"}' \
-  #           ${{ secrets.DISCORD_WEBHOOK_URL }}
+        working-directory: ${{ github.workspace }}
