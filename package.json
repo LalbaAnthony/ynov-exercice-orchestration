@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
+    "start": "node main.js",
     "test": "jest",
     "build": "echo \"No build specified\""
   },
@@ -16,5 +17,8 @@
     "testMatch": [
       "**/?(*.)+(spec|test).[tj]s?(x)"
     ]
+  },
+  "dependencies": {
+    "express": "^4.21.1"
   }
 }

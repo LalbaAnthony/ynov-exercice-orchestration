@@ -1,7 +1,7 @@
 name: Deply
 on:
   workflow_run:
-  workflows: ["test"]
+  workflows: ["Test"]
   types:
     - completed
 jobs:
